@@ -1,22 +1,19 @@
-def median(x,y,z):
-    smallest = x
-    if y < smallest:
-        smallest = y
-    if z < smallest:
-        smallest = z
-
-    largest = x
-    if y > largest:
-        largest = y
-    if z > largest:
-        largest = z
-
-    if x != largest and x != smallest:
+def smaller(x,y):
+    if x < y:
         return x
-    elif y != largest and y != smallest:
-        return y
     else:
-        return z
+        return y
+
+def smallest(x,y,z):
+    return smaller(smaller(x,y),z)
+def median(x,y,z):
+    if x == smallest(x,y,z):
+        return smaller(y,z)
+    elif y == smallest(x,y,z):
+        return smaller(x,z)
+    else:
+        return smaller(x,y)
+
 
 print(median(1,3,5))
 print(median(3,5,1))
